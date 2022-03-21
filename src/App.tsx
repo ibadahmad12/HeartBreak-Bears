@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import { HomePage } from './components/HomePage/HomePage';
+import { MintPage } from './components/MintPage/MintPage';
+import { ScavHuntPage } from './components/ScavHuntPage/ScavHuntPage';
+import { CollabIslandPage, DeathTreasurePage, JewelCoastPage, RiskyFriskyPage, TrainingGroundPage } from './components/GamePages/GamePages/GamePages';
+import { StakingPage } from './components/StakingPage/StakingPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+          <Switch>
+            <Route path='/mint'><MintPage/> </Route>
+            <Route path='/staking'><StakingPage/></Route>
+            <Route path="/scav-hunt/scavenger-hunt"><ScavHuntPage/></Route>
+            <Route path="/scav-hunt/training-ground"><TrainingGroundPage/></Route>
+            <Route path="/scav-hunt/jewel-coast"><JewelCoastPage/></Route>
+            <Route path="/scav-hunt/death-treasure"><DeathTreasurePage/></Route>
+            <Route path="/scav-hunt/collab-land"><CollabIslandPage/></Route>
+            <Route path="/scav-hunt/risky-frisky"><RiskyFriskyPage/></Route>
+            <Route path="/"><HomePage/></Route>    
+          </Switch>
+      </div> 
   );
 }
 
