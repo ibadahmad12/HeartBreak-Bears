@@ -19,6 +19,7 @@ function Carousel(props: CarouselProps) {
 
 const Container = styled.div<{ gridSize: number }>`
     display: flex;
+    flex-wrap: no-wrap;
 `
 
 export { Carousel }

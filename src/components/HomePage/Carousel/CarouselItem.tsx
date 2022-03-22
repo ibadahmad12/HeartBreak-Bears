@@ -14,13 +14,25 @@ function CarouselItem (props: CarouselItemProps) {
 }
 
 const ImageContainer = styled.div<{clicked: boolean}>`
-    max-width: 600px;
     cursor: pointer;
+    flex: 1;
+    transition: flex .4s ease-out;
+    opacity: 0.5;
+    color: white;
+    &:hover {
+        flex: 2;
+        opacity: 1;
+    }
 `;
 
 const CustomImage = styled.img`
     width: 100%;
     background: transparent;
+    object-fit: cover;
+    min-height: 400px;
+    @media (max-width: 768px) {
+        min-height: 200px;
+    }
 `
 
 export { CarouselItem }

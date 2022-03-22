@@ -7,6 +7,11 @@ function CarouselRenderer () {
     carouselItemList.push(require('./Images/polarbearcarousel.png'));
     carouselItemList.push(require('./Images/blackmetalbearcarousel.png'))
     carouselItemList.push(require('./Images/blackbearcarousel.png'));
+    carouselItemList.push(require('./Images/polarbearcarousel.png'));
+    carouselItemList.push(require('./Images/blackmetalbearcarousel.png'))
+    carouselItemList.push(require('./Images/blackbearcarousel.png'));
+    carouselItemList.push(require('./Images/blackmetalbearcarousel.png'))
+    carouselItemList.push(require('./Images/blackbearcarousel.png'));
     return  (<Container>
         <Carousel carouselItemURLS={carouselItemList} />
     </Container>)
