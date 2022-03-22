@@ -37,15 +37,19 @@ const Container = styled.div`
     
 `
 const ImageContainer = styled.div<{hover: boolean}>`
-    padding: 20px;
-    max-width: 200px;
+    padding: 15px;
+    width: 15vw;
     border-raidus: ${p=>p.hover? '50%':'20%'};
 `
 const CustomImage = 
     styled.img<{bearImage: string, profileImage: string, hover: boolean}>`
-    border-raidus: ${p=>p.hover? '50%':'20%'};
     width: 100%;
+    height: 100%;
     transition: all .2s ease-in-out;
+    border-radius: 15px;
+    &:hover {
+        border-radius: 50%;
+    }
  `
  const Name = styled.div``
  const Role = styled.div``

@@ -81,6 +81,10 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     background-size: cover;
+    margin-left: -18px;
+    margin-right: -18px;
+    margin-top: -10px;
+    margin-bottom: -10px;
 `
 
 const Logo = styled.img`

@@ -72,7 +72,7 @@ function BearTeam() {
 }
 
 const Container = styled.div`
-    width: 70%;
+    width: 80%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 0 auto;

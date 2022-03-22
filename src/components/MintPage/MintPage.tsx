@@ -16,7 +16,6 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     color: white;
-    width:100%;
     margin: 0;
     height: 100vh;
     flex:1;
@@ -24,6 +23,10 @@ const Container = styled.div`
     background-size: cover;
     opacity: 0.9;
     padding: 1vh;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    margin-left: -15px;;
+    margin-right: -15px;
 `
 
 const Note = styled.div`

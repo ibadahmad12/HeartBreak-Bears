@@ -26,6 +26,11 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     background-size: cover;
+    background-size: 100% 100%;
+    margin-left: -18px;
+    margin-right: -18px;
+    margin-top: -10px;
+    margin-bottom: -10px;
 `
 const Heading = styled.div`
     display: grid;

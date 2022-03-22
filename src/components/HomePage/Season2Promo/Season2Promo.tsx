@@ -19,7 +19,7 @@ const Container = styled.div`
 `
 
 const CustomImage = styled.img`
-    width: 100%;
+    width: 70%;
     color: #333333
     background: transparent;
 `
