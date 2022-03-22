@@ -10,7 +10,7 @@ import { StakingPage } from './components/StakingPage/StakingPage';
 function App() {
   return (
       <div className="App">
-          <Switch>
+          <Switch>        
             <Route path='/mint'><MintPage/> </Route>
             <Route path='/staking'><StakingPage/></Route>
             <Route path="/scav-hunt/scavenger-hunt"><ScavHuntPage/></Route>

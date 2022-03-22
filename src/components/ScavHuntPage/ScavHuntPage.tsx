@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { BorderLineSeperator } from "../CommonComponents/BorderLineSeparater";
 import { IslandContainer } from "./IslandContainer/IslandContainer";
 import { ScavNavHuntFooter } from "./ScavHuntPageFooter/ScavHuntPageFooter";
 import { ScavHuntNavBar } from "../CommonComponents/HuntPageNavBar/HuntPageNavBar";
+import { useHistory } from "react-router-dom";
 
 function ScavHuntPage () {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return  <Container>
         <ScavHuntNavBar/>
         <Logo src='https://uploads-ssl.webflow.com/61669e248724654baf8b8d74/61d6a211eb44826879b5510f_Scavenger%20Hunt%20Logo.png'/>

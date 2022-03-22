@@ -17,7 +17,7 @@ const ImageContainer = styled.div<{clicked: boolean}>`
     cursor: pointer;
     flex: 1;
     transition: flex .4s ease-out;
-    opacity: 0.5;
+    opacity: 0.6;
     color: white;
     &:hover {
         flex: 2;
