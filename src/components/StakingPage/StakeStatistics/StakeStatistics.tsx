@@ -32,13 +32,12 @@ const Container = styled.div`
     border-radius: 20px;
     background-color: #f5ead6;
     box-shadow: 2px 2px 3px 3px rgb(0 0 0 / 30%);
-    align-items: center;
-    justify-content: center;
     width: 80%;
     align-self: center;
     margin-top: 4vh;
     flex-wrap: wrap;
     max-width: 800px;
+    align-items: flex-start;
 `
 
 const Statistic = styled.div`
@@ -67,6 +66,12 @@ const Title = styled.div`
     }
 `
 
-const Value = styled.div``
+const Value = styled.div`
+    font-size: 3vh;
+    line-height: 3vh;
+    @media (max-width: 768px) {
+        font-size: 1.5vh;
+        line-height: 1.5vh;
+    }`
 
 export { StakeStatistics }
