@@ -1,4 +1,4 @@
-# Getting Started with the Project
+# Getting Started with the smart contract Project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
