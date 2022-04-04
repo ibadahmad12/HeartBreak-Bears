@@ -1,4 +1,4 @@
-# Getting Started with the smart contract Project
+# Getting Started with the NFT Project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
