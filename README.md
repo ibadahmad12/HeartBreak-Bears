@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Main Directories in the project
+
+components: List of all the React components
+contexts: List of contexts that the components listen to/ update
+modals:  modals/ dialog boxes used in components
+
+
 ## Available Scripts
 
 In the project directory, you can run:
