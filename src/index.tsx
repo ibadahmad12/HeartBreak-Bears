@@ -4,11 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { WalletContextProvider } from './contexts/WalletContext';
 
 ReactDOM.render(
-  <Router>
-      <App />
-  </Router>,
+  <WalletContextProvider>
+      <Router>
+          <App />
+      </Router>
+  </WalletContextProvider>,
   document.getElementById('root')
 );
 

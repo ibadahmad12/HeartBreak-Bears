@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { HBBNFTContract } from "../../../contracts/HBBNFTContract/HBBNFTContract";
 
 function SoldOutCard() {
+
+    const [nftStats, setNFTStats] = useState('');
+
+    useEffect(()=>{
+        const getNFTStats = async () => {
+            const result =  await HBBNFTContract.getNftStats();
+            setNFTStats(result);
+        }
+        getNFTStats();
+
+    },[]);
     return <Container>
         <CustomImage src={require('./Images/soldoutimage.png')}/>
-        <Text>????/????</Text>
+        <Text>{nftStats ? nftStats : '????/????'}</Text>
         <SOLDOUTTEXT>SOLDOUT</SOLDOUTTEXT>
         <SEASON2UPDATE>Stay tuned for Season 2!</SEASON2UPDATE>
     </Container>

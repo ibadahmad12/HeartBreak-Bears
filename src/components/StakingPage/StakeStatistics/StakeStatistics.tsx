@@ -1,15 +1,48 @@
-import React from "react";
+import { Wallet } from "ethers";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import { WalletContext } from "../../../contexts/WalletContext";
+import { HBCContract } from "../../../contracts/HBCContract/HBCContract";
+import { StakingContract } from "../../../contracts/StakingContract/StakingContract";
 
 function StakeStatistics() {
+
+    const { isWalletConnected, address, provider }  = useContext(WalletContext);
+    const { bonus, 
+        setBonus, 
+        nftsInWallet, 
+        setNFTSInWallet, 
+        tokensRewarded, 
+        setTokensRewarded,
+        hbcBalance,
+        setHBCBalance,
+    } = useContext(WalletContext);
+
+    useEffect(()=> {
+        const getTokenBalance = async () => {
+            const bonus =  await StakingContract.getTokenBalance(address);
+            setBonus(bonus);
+            const nftsInWallet = await StakingContract.getNFTSInWallet(address);
+            setNFTSInWallet(nftsInWallet);
+            const tokensRewarded = await StakingContract.getAvailableReward(address);
+            setTokensRewarded(tokensRewarded);
+            const hbcBalance = await HBCContract.getHBCBalance(address);
+            setHBCBalance(hbcBalance);
+            
+        }
+        if(isWalletConnected && !bonus){       
+          getTokenBalance();
+        }  
+    },[provider,isWalletConnected])
+
     return <Container>  
         <Statistic>
             <Title> NFTS STAKED </Title>
-            <Value>---</Value>
+            <Value>{ nftsInWallet? nftsInWallet.length: '--'}</Value>
         </Statistic>
         <Statistic>
             <Title> TOTAL EARNED </Title>
-            <Value>---</Value>
+            <Value>{ tokensRewarded? `${tokensRewarded} HBC`: '--'}</Value>
         </Statistic>
         <Statistic>
             <Title> DAILY RATE </Title>
@@ -17,11 +50,11 @@ function StakeStatistics() {
         </Statistic>
         <Statistic>
             <Title> BONUS </Title>
-            <Value>---</Value>
+            <Value>{ bonus || bonus=='0'? `${bonus}% / NFT`: '--'}</Value>
         </Statistic>
         <Statistic>
             <Title> HBCS OWN </Title>
-            <Value>---</Value>
+            <Value>{ hbcBalance || hbcBalance=='0'? `${hbcBalance} HBC`: '--'}</Value>
         </Statistic>
     </Container>
 }

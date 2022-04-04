@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
+import { WalletContext } from "../../contexts/WalletContext";
 import { ScavHuntNavBar } from "../CommonComponents/HuntPageNavBar/HuntPageNavBar";
 import { StakeStatistics } from "./StakeStatistics/StakeStatistics";
 import { NFTSInWalletWidget } from "./Widgets/NFTSInWalletWidget";
 import { NFTSStakedWidget } from "./Widgets/NFTSStakedWidget";
 
 function StakingPage () {
+
+    const { isWalletConnected, connectToWallet, address } = useContext(WalletContext);
+
+    const renderAddress = (address: string) => {
+        return address.substring(0,5) + "..." + address.substring(address.length-4, address.length);
+    }
+
     return <Container>
         <ScavHuntNavBar/>
         <Heading>
@@ -14,7 +22,7 @@ function StakingPage () {
             <CustomImage src='https://uploads-ssl.webflow.com/61669e248724654baf8b8d74/61af6154bb62124414b25fee_Mini%20HBC-01.png'/>
         </Heading>
         <StakeStatistics/>
-        <ConnectMetaMaskLink>CONNECT WALLET</ConnectMetaMaskLink>
+        {!isWalletConnected ? <ConnectMetaMaskLink onClick={()=>connectToWallet()}>CONNECT WALLET</ConnectMetaMaskLink>:<ConnectMetaMaskLink>{renderAddress(address)}</ConnectMetaMaskLink>}
         <NFTSInWalletWidget/>
         <NFTSStakedWidget/>
 
@@ -60,8 +68,7 @@ const HeaderText = styled.div`
     }
 `
 
-const ConnectMetaMaskLink = styled.a`
-    text-decoration: none;
+const ConnectMetaMaskLink = styled.button`
     margin-top: 10px;
     border-radius: 20px;
     background-color: #824b40;
@@ -71,8 +78,10 @@ const ConnectMetaMaskLink = styled.a`
     border: 0;
     line-height: inherit;
     cursor: pointer;
+    font: inherit;
     z-index: 10;
-    font-size: 3vh;
+    font-size: 3vh; 
+    font-weight: bold;
     text-align: center;
     box-sizing: border-box;
     margin: 0 auto;

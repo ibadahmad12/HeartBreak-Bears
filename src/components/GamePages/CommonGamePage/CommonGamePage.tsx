@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ScavNavHuntFooter } from "../../ScavHuntPage/ScavHuntPageFooter/ScavHuntPageFooter";
 import { ScavHuntNavBar } from "../../CommonComponents/HuntPageNavBar/HuntPageNavBar";
 import { CommonGamePageMainSection } from "./CommonPageMainSection/CommonGamePageMainSection";
 import { Prizes, PrizesProps } from "./Prizes";
+import { GameInfoCostTimeResult, ScavHuntContract } from "../../../contracts/ScavHuntContract/ScavHuntContract";
 
 
 interface CommonGamePageProps {
@@ -17,6 +18,22 @@ interface CommonGamePageProps {
 }
 
 function CommonGamePage(props: CommonGamePageProps) {
+
+    const [result, setResult] = useState<GameInfoCostTimeResult>({
+        costPerHunt: 0,
+        timePerHunt: 0,
+        costPerHuntExpress: 0,
+        timePerHuntExpress: 0
+    })
+     
+    useEffect(()=>{
+        const getGameCostTimeInfo = async () => {
+            const result:GameInfoCostTimeResult = await ScavHuntContract.getGameCostAndTimeInfo(props.title)
+            setResult(result);
+        }
+        getGameCostTimeInfo();
+    },[])
+
     return <Container>
         <ScavHuntNavBar/>
         <CommonGamePageMainSection huntCost={props.huntCost}

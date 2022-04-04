@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { GameInfoCostTimeResult, ScavHuntContract } from "../../../contracts/ScavHuntContract/ScavHuntContract";
 import { CommonGamePage } from "../CommonGamePage/CommonGamePage";
 
 function TrainingGroundPage() {
-    return <CommonGamePage  huntCost={5}
-    huntTime={12}
-    expressCost={10}
-    expressTime={6}
+
+    const [result, setResult] = useState<GameInfoCostTimeResult>({
+        costPerHunt: 0,
+        timePerHunt: 0,
+        costPerHuntExpress: 0,
+        timePerHuntExpress: 0
+    })
+     
+    useEffect(()=>{
+        const getGameCostTimeInfo = async () => {
+            const result:GameInfoCostTimeResult = await ScavHuntContract.getGameCostAndTimeInfo('Training Ground')
+            setResult(result);
+        }
+        getGameCostTimeInfo();
+    },[])
+
+    return <CommonGamePage  huntCost={result.costPerHunt}
+    huntTime={result.timePerHunt}
+    expressCost={result.costPerHuntExpress}
+    expressTime={result.timePerHuntExpress}
     title = {'TRAINING GROUND'}
     imageURL={'https://uploads-ssl.webflow.com/61669e248724654baf8b8d74/61d7f68f76fa4b322249ef6c_Island%201-01.png'}
     prizes= { [ 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import { HomePage } from './components/HomePage/HomePage';
@@ -6,10 +6,15 @@ import { MintPage } from './components/MintPage/MintPage';
 import { ScavHuntPage } from './components/ScavHuntPage/ScavHuntPage';
 import { CollabIslandPage, DeathTreasurePage, JewelCoastPage, RiskyFriskyPage, TrainingGroundPage } from './components/GamePages/GamePages/GamePages';
 import { StakingPage } from './components/StakingPage/StakingPage';
+import { WalletContext } from './contexts/WalletContext';
 
 function App() {
+
+  const { error } = useContext(WalletContext);
+
   return (
       <div className="App">
+        {error && alert(error)}
           <Switch>        
             <Route path='/mint'><MintPage/> </Route>
             <Route path='/staking'><StakingPage/></Route>
