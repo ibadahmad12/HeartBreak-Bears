@@ -1,17 +1,43 @@
 import React from "react";
 import styled from "styled-components";
+import { IPFSLink } from "../../../../contracts/constants";
 
-function AdventuresWidget() {
+interface ChildrenProps  {
+    nftsInWallet: string[];
+    onClick: Function;
+    selectedNft: string;
+}
+
+function AdventuresWidget({nftsInWallet, onClick, selectedNft} : ChildrenProps) {
+
+    const highlight = {
+        borderWidth: "5px",
+        borderStyle: "solid",
+        // backgroundColor: "green",
+        borderColor: "green"
+      };
+      const noHighlight = {
+        borderWidth: "0px",
+        borderStyle: "solid",
+        backgroundColor: "transparent",
+        borderColor: "transparent"
+      };
+
+    const nftItems = nftsInWallet.map((nft) => <Box key={nft} onClick={() => {onClick(nft)}}><Image style={ selectedNft == nft ? highlight : noHighlight} src={`${IPFSLink}${nft}.png`}/></Box>);
+
     return <Container>
         <Title>HBB ADVENTURES</Title>
         <BoxContainer>
-            <Box></Box>
-            <Box></Box>
-            <Box></Box>
+            {nftItems}
         </BoxContainer>
     </Container>
 }
 
+const Image = styled.img`
+    max-height: 200px;
+    max-width: 200px;
+    border-radius: 20px;
+`
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -23,7 +49,10 @@ const Container = styled.div`
     padding: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
+    max-width: 60%;
 `
+
+
 const Title = styled.h1`
     color: #000;
     font-size: 4vh;
@@ -36,17 +65,19 @@ const Title = styled.h1`
 `
 
 const BoxContainer = styled.div`
-    display:flex;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    margin-bottom: 5vh;
+    max-width: 100%;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
-    max-width: 100%;
-    flex-wrap: wrap;
+    cursor: pointer;
 `
 
 const Box = styled.div`
-    max-height: 120px;
-    max-width: 120px;
+    max-height: 200px;
+    max-width: 200px;
     min-height: 120px;
     min-width: 120px;
     margin-right: 1vh;
@@ -55,8 +86,7 @@ const Box = styled.div`
     background-color: rgba(0, 0, 0, 0.1);
     box-shadow: 1px 1px 2px 2px rgb(0 0 0 / 30%);
     box-sizing: border-box;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 5px;
     @media  (max-width: 768px) {
         max-height: 60px;
         max-width: 60px;

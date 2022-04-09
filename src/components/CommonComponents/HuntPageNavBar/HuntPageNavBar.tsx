@@ -19,7 +19,7 @@ const Container = styled.div`
     padding-left: 2vw;
     padding-right: 2vw;
     align-items: center;
-    z-index: 10;
+    z-index: 9998;
 `
 
 export { ScavHuntNavBar }

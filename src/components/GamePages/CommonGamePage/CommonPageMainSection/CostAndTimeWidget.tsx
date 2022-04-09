@@ -28,7 +28,8 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 50%;
+    width: 60%;
+    max-width: 600px;
     align-self: center;
     background: hsla(0, 0%, 100%, 0.69);
     border-radius: 20px;
@@ -54,6 +55,8 @@ const Title = styled.h4`
 const InfoText = styled.p`
     color: #000;
     font-size: 1.5vh;
-    line-height: 1.5vh;`
+    line-height: 1.5vh;
+    text-align: left;
+    margin: 0;`
 
 export { CostAndTimeWidget }

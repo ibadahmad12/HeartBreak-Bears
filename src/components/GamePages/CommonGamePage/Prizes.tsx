@@ -9,7 +9,7 @@ function Prizes (props: PrizesProps) {
 
     const renderPrizes = (prizes: Array<string>) => {
         return prizes.map((prize) => {
-            return <Prize>{prize}</Prize>;
+            return <Prize key={prize}>{prize}</Prize>;
     })
     }
     return <Container>
@@ -30,7 +30,9 @@ const Container = styled.div`
     flex-direction: column;
 `
 const Title = styled.h1`
-
+    font-size: 6vh;
+    margin-bottom: 0px;
+    margin-top: 100px;
 `
 
 const ImageGrid = styled.span`

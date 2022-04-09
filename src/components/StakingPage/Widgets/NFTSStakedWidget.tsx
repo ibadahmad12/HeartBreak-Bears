@@ -1,13 +1,30 @@
-import React from "react";
 import styled from "styled-components";
 import { CommonWidget } from "./CommonWidget";
+import React, { useContext, useEffect, useState } from "react";
+import { WalletContext } from "../../../contexts/WalletContext";
+import { StakingContract } from "../../../contracts/StakingContract/StakingContract";
 
 function NFTSStakedWidget() {
-    return (<CommonWidget title='NFTS STAKED'>
+
+    const {
+        nftsStaked,
+        address
+    } = useContext(WalletContext);
+
+    const [selectedNFTs, setSelectedNFTs] = useState<string[]>([]);
+
+    function updateSelected(id: string) {
+        if (selectedNFTs.includes(id)) {
+            setSelectedNFTs(selectedNFTs.filter(nft => nft !== id));
+        } else {
+            setSelectedNFTs([...selectedNFTs, id]);
+        }
+    }
+    return (<CommonWidget title='NFTS STAKED' nfts={nftsStaked} onClick={updateSelected} selectedNFTs={selectedNFTs}>
         <StakeLinks>
-            <StakeLink>UNSTAKE</StakeLink>
-            <StakeLink>UNSTAKE ALL</StakeLink>
-            <StakeLink>CLAIM TOKENS</StakeLink>
+            <StakeLink onClick={() => { StakingContract.unstakeSelected(selectedNFTs)} }>UNSTAKE</StakeLink>
+            <StakeLink onClick={() => { StakingContract.unstakeAll(nftsStaked)} }>UNSTAKE ALL</StakeLink>
+            <StakeLink onClick={() => { StakingContract.claimTokens(address)} }>CLAIM TOKENS</StakeLink>
         </StakeLinks>
     </CommonWidget>);
 }
@@ -19,6 +36,7 @@ const StakeLinks = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     max-width: 100%;
+    margin: auto;
 `
 
 const StakeLink = styled.a`

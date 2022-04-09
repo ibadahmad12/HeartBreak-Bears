@@ -23,7 +23,7 @@ function ScavHuntPage () {
                     right: 'auto',
                     top: '0%',
                     bottom: 'auto'
-            }}/>
+                }}/>
             <IslandContainer 
                 title="JEWEL COAST" 
                 backgroundImageURL="https://uploads-ssl.webflow.com/61669e248724654baf8b8d74/61d7fdadb44031136d259455_Island%202-01.png" 

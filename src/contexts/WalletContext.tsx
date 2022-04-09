@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
 import React, {useState, ReactChild, ReactChildren, useEffect} from "react";
+import { ChainID } from "../contracts/constants";
 
 
 type WalletContextType = {
@@ -11,7 +12,9 @@ type WalletContextType = {
     bonus: string;
     setBonus: Function;
     nftsInWallet: string[];
-    setNFTSInWallet: Function;
+    setNFTSInWallet: Function;    
+    nftsStaked: string[];
+    setNFTSStaked: Function;
     tokensRewarded: string;
     setTokensRewarded: Function;
     hbcBalance: string,
@@ -31,6 +34,8 @@ const defaultValue:WalletContextType = {
     setTokensRewarded: ()=>{},
     nftsInWallet: [],
     setNFTSInWallet: ()=>{},
+    nftsStaked: [],
+    setNFTSStaked: ()=>{},
     hbcBalance: '',
     setHBCBalance: ()=>{},
     provider: undefined,
@@ -44,7 +49,7 @@ const WalletContext = React.createContext<WalletContextType>(defaultValue);
 
 function WalletContextProvider ({children} : ContextProviderProps) {
 
-    const MainNetVersion = 1;
+    const MainNetVersion = ChainID;
 
     const [isWalletConnected, setIsWalletConnected] = useState(false);
     const [error, setError] = useState("");
@@ -53,11 +58,13 @@ function WalletContextProvider ({children} : ContextProviderProps) {
     const [hbcBalance, setHBCBalance] = useState("");
     const [tokensRewarded, setTokensRewarded] = useState("");
     const [nftsInWallet, setNFTSInWallet] = useState([]);
+    const [nftsStaked, setNFTSStaked] = useState([]);
     const [provider, setProvider] = useState<ethers.providers.Web3Provider | undefined>(undefined);
 
     const connectToWallet = async () => {         
         if(!isWalletConnected){          
           if(window.ethereum) {
+              console.log(window.ethereum.networkVersion, MainNetVersion)
                 if(window.ethereum.networkVersion != MainNetVersion) {
                     setError("Wrong Network. Please connect to Ethereum Network");
                     window.location.reload();
@@ -101,6 +108,8 @@ function WalletContextProvider ({children} : ContextProviderProps) {
             setTokensRewarded,
             nftsInWallet,
             setNFTSInWallet,
+            nftsStaked,
+            setNFTSStaked,
             hbcBalance,
             setHBCBalance,
             provider

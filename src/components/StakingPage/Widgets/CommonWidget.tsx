@@ -1,20 +1,37 @@
 import React, { Children, ReactChild, ReactChildren, ReactNode } from "react";
 import styled from "styled-components";
+import { IPFSLink } from "../../../contracts/constants";
 
 
 interface ChildrenProps  {
     children: ReactChild | ReactChildren;
     title: string;
+    nfts: string[];
+    onClick: Function;
+    selectedNFTs: string[];
 }
 
 
-function CommonWidget( {children, title} : ChildrenProps ) {
+function CommonWidget( {children, title, nfts, onClick, selectedNFTs} : ChildrenProps ) {
+
+    const highlight = {
+        borderWidth: "5px",
+        borderStyle: "solid",
+        // backgroundColor: "green",
+        borderColor: "green"
+      };
+      const noHighlight = {
+        borderWidth: "0px",
+        borderStyle: "solid",
+        backgroundColor: "transparent",
+        borderColor: "transparent"
+      };
+
+    const nftItems = nfts.map((nft) => <Box key={nft} onClick={() => {onClick(nft)}}><Image style={ selectedNFTs.includes(nft) ? highlight : noHighlight} src={`${IPFSLink}${nft}.png`}/></Box>);
     return <Container>
         <Title>{title}</Title>
         <BoxContainer>
-            <Box></Box>
-            <Box></Box>
-            <Box></Box>
+            {nftItems}
         </BoxContainer>
         <ChildrenContainer>
              { children }
@@ -40,7 +57,7 @@ const Container = styled.div`
         padding-left: 3px;
         padding-right: 3px;
     }
-    max-width: 100%;
+    max-width: 60%;
 `
 
 const ChildrenContainer = styled.div`
@@ -66,11 +83,19 @@ const BoxContainer = styled.div`
     max-width: 100%;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+`
+
+
+const Image = styled.img`
+    max-height: 200px;
+    max-width: 200px;
+    border-radius: 20px;
 `
 
 const Box = styled.div`
-    max-height: 120px;
-    max-width: 120px;
+    max-height: 200px;
+    max-width: 200px;
     min-height: 120px;
     min-width: 120px;
     margin-right: 1vh;

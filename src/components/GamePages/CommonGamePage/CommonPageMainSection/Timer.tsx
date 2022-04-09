@@ -2,16 +2,30 @@ import React from "react";
 import styled from "styled-components";
 
 interface TimerProps {
-    hours: string;
-    minutes: string;
-    seconds: string;
+    time: string
 }
 
 function Timer(props: TimerProps) {
+
+    function WhatToShow() {
+        if (props.time.includes(":")) {
+            return (
+                <Time>
+                    {`${props.time}`}
+                </Time>
+            )
+        } else if (props.time.includes("Loading...")) {
+            return (<i className="fa fa-spinner fa-spin"></i>)
+        } else {
+            return (
+                <Text>
+                    {`${props.time}`}
+                </Text>
+            )
+        }
+    }
     return <Container>
-        <Time>
-            {`${props.hours}:${props.minutes}:${props.seconds}`}
-        </Time>
+        <WhatToShow />
     </Container>
 }
 
@@ -35,5 +49,9 @@ const Container = styled.div`
 const Time = styled.div`
     self-align: center;`
 
+const Text = styled.div`
+    self-align: center;
+    font-size: 4vh;
+    `
 
 export { Timer }

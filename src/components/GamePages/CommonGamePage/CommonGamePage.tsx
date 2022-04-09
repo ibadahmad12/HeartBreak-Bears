@@ -14,6 +14,7 @@ interface CommonGamePageProps {
     expressCost: number;
     huntTime: number;
     expressTime: number;
+    expressFactor: number;
     prizes: Array<string>;
 }
 
@@ -23,7 +24,8 @@ function CommonGamePage(props: CommonGamePageProps) {
         costPerHunt: 0,
         timePerHunt: 0,
         costPerHuntExpress: 0,
-        timePerHuntExpress: 0
+        timePerHuntExpress: 0,
+        expressFactor: 0
     })
      
     useEffect(()=>{
@@ -40,6 +42,7 @@ function CommonGamePage(props: CommonGamePageProps) {
             huntTime={props.huntTime}
             expressCost={props.expressCost}
             expressTime={props.expressTime}
+            expressFactor={props.expressFactor}
             title = {props.title}
             imageURL={props.imageURL}/>
         <Prizes prizes={props.prizes}   />

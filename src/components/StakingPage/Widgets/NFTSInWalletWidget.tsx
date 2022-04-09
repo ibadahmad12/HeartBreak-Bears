@@ -1,12 +1,44 @@
-import React from "react";
 import styled from "styled-components";
 import { CommonWidget } from "./CommonWidget";
+import React, { useContext, useEffect, useState } from "react";
+import { WalletContext } from "../../../contexts/WalletContext";
+import { StakingContract } from "../../../contracts/StakingContract/StakingContract";
+import { HBBNFTContract } from "../../../contracts/HBBNFTContract/HBBNFTContract";
+import { StakingContractAddress } from "../../../contracts/constants";
 
 function NFTSInWalletWidget() {
-    return (<CommonWidget title='NFTS IN WALLET'>
+    const {
+        nftsInWallet,
+        address
+    } = useContext(WalletContext);
+
+    const [selectedNFTs, setSelectedNFTs] = useState<string[]>([]);
+    const [isApproved, setIsApproved] = useState<boolean>(false);
+
+    useEffect(()=> {
+        const checkApproved = async () => {
+            const isApproved = await HBBNFTContract.checkIsApproved(address, StakingContractAddress)
+            console.log("Is approved: ", isApproved);
+            setIsApproved(isApproved);
+        }
+        if(address){       
+          checkApproved();
+        }  
+    },[address])
+
+    function updateSelected(id: string) {
+        if (selectedNFTs.includes(id)) {
+            setSelectedNFTs(selectedNFTs.filter(nft => nft !== id));
+        } else {
+            setSelectedNFTs([...selectedNFTs, id]);
+        }
+
+    }
+
+    return (<CommonWidget title='NFTS IN WALLET' nfts={nftsInWallet} onClick={updateSelected} selectedNFTs={selectedNFTs}>
         <StakeLinks>
-            <StakeLink>Approve</StakeLink>
-            <StakeLink>Stake</StakeLink>
+        { !isApproved && <StakeLink onClick={() => { HBBNFTContract.approve(StakingContractAddress) }}>Approve</StakeLink> }
+        <StakeLink onClick={() => { StakingContract.stakeNFTs(address, selectedNFTs)} }>Stake</StakeLink>
         </StakeLinks>
     </CommonWidget>);
 }
@@ -18,6 +50,7 @@ const StakeLinks = styled.div`
     align-items: center;
     justify-content: center;
     max-width: 100%;
+    margin: auto;
 `
 
 const StakeLink = styled.a`
