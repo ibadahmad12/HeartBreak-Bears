@@ -17,6 +17,7 @@ interface CommonGamePageMainSectionProps {
     huntCost: number;
     expressCost: number;
     huntTime: number;
+    rawHuntTime: number;
     expressTime: number;
     expressFactor: number;
 }
@@ -80,9 +81,11 @@ function CommonGamePageMainSection(props: CommonGamePageMainSectionProps) {
                 let startTime = gameInfo.timestamp * 1000
                 let now = Date.now()
                 let diff = now - startTime
-                let duration = gameInfo.isExpress ? (props.huntTime / props.expressFactor) : props.huntTime
+                let scavengerHuntGameDuration = props.rawHuntTime * 1000
+                let duration = gameInfo.isExpress ? (scavengerHuntGameDuration / props.expressFactor) : scavengerHuntGameDuration
                 let scavengerHuntTimeRemaining = duration - diff
                 setTimeRemaining(scavengerHuntTimeRemaining)
+                console.log("Duration: ",scavengerHuntGameDuration)
                 console.log(scavengerHuntTimeRemaining, duration, diff)
                 if (scavengerHuntTimeRemaining > 0 && diff > 0) {
                     console.log("1.1");

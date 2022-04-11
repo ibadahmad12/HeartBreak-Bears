@@ -7,6 +7,7 @@ function TrainingGroundPage() {
     const [result, setResult] = useState<GameInfoCostTimeResult>({
         costPerHunt: 0,
         timePerHunt: 0,
+        rawTimePerHunt: 0,
         costPerHuntExpress: 0,
         timePerHuntExpress: 0,
         expressFactor: 0
@@ -22,6 +23,7 @@ function TrainingGroundPage() {
 
     return <CommonGamePage  huntCost={result.costPerHunt}
     huntTime={result.timePerHunt}
+    rawHuntTime={result.rawTimePerHunt}
     expressCost={result.costPerHuntExpress}
     expressTime={result.timePerHuntExpress}
     expressFactor={result.expressFactor}
@@ -40,6 +42,7 @@ function JewelCoastPage() {
     const [result, setResult] = useState<GameInfoCostTimeResult>({
         costPerHunt: 0,
         timePerHunt: 0,
+        rawTimePerHunt: 0,
         costPerHuntExpress: 0,
         timePerHuntExpress: 0,
         expressFactor: 0
@@ -55,6 +58,7 @@ function JewelCoastPage() {
 
     return <CommonGamePage  huntCost={result.costPerHunt}
     huntTime={result.timePerHunt}
+    rawHuntTime={result.rawTimePerHunt}
     expressCost={result.costPerHuntExpress}
     expressTime={result.timePerHuntExpress}
     expressFactor={result.expressFactor}
@@ -73,6 +77,7 @@ function RiskyFriskyPage() {
     const [result, setResult] = useState<GameInfoCostTimeResult>({
         costPerHunt: 0,
         timePerHunt: 0,
+        rawTimePerHunt: 0,
         costPerHuntExpress: 0,
         timePerHuntExpress: 0,
         expressFactor: 0
@@ -88,6 +93,7 @@ function RiskyFriskyPage() {
 
     return <CommonGamePage  huntCost={result.costPerHunt}
     huntTime={result.timePerHunt}
+    rawHuntTime={result.rawTimePerHunt}
     expressCost={result.costPerHuntExpress}
     expressTime={result.timePerHuntExpress}
     expressFactor={result.expressFactor}
@@ -106,6 +112,7 @@ function CollabIslandPage() {
     const [result, setResult] = useState<GameInfoCostTimeResult>({
         costPerHunt: 0,
         timePerHunt: 0,
+        rawTimePerHunt: 0,
         costPerHuntExpress: 0,
         timePerHuntExpress: 0,
         expressFactor: 0
@@ -121,6 +128,7 @@ function CollabIslandPage() {
 
     return <CommonGamePage  huntCost={result.costPerHunt}
     huntTime={result.timePerHunt}
+    rawHuntTime={result.rawTimePerHunt}
     expressCost={result.costPerHuntExpress}
     expressTime={result.timePerHuntExpress}
     expressFactor={result.expressFactor}
@@ -139,6 +147,7 @@ function DeathTreasurePage() {
     const [result, setResult] = useState<GameInfoCostTimeResult>({
         costPerHunt: 0,
         timePerHunt: 0,
+        rawTimePerHunt: 0,
         costPerHuntExpress: 0,
         timePerHuntExpress: 0,
         expressFactor: 0
@@ -154,6 +163,7 @@ function DeathTreasurePage() {
 
     return <CommonGamePage  huntCost={result.costPerHunt}
     huntTime={result.timePerHunt}
+    rawHuntTime={result.rawTimePerHunt}
     expressCost={result.costPerHuntExpress}
     expressTime={result.timePerHuntExpress}
     expressFactor={result.expressFactor}

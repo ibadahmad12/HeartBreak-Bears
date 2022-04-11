@@ -5,6 +5,7 @@ import { alchemyNetworkProviderURL, EtherscanURL, ScavHuntAddress } from "../con
 interface GameInfoCostTimeResult {
     costPerHunt: number;
     timePerHunt: number;
+    rawTimePerHunt: number;
     costPerHuntExpress: number;
     timePerHuntExpress: number;
     expressFactor: number;
@@ -58,6 +59,7 @@ class ScavHuntContract {
             costPerHunt: parseInt(ethers.utils.formatEther(scavengerGameInfo.cost)),
             costPerHuntExpress: parseInt(ethers.utils.formatEther(scavengerGameInfo.cost.mul('2'))),
             timePerHunt: parseInt(secondsToHms(scavengerGameInfo.duration)),
+            rawTimePerHunt: scavengerGameInfo.duration,
             timePerHuntExpress:  parseInt(secondsToHms(scavengerGameInfo.duration.div('2'))),
             expressFactor: scavengerHuntExpressFactor
         }

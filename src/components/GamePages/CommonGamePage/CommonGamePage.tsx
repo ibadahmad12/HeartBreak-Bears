@@ -13,6 +13,7 @@ interface CommonGamePageProps {
     huntCost: number;
     expressCost: number;
     huntTime: number;
+    rawHuntTime: number;
     expressTime: number;
     expressFactor: number;
     prizes: Array<string>;
@@ -23,6 +24,7 @@ function CommonGamePage(props: CommonGamePageProps) {
     const [result, setResult] = useState<GameInfoCostTimeResult>({
         costPerHunt: 0,
         timePerHunt: 0,
+        rawTimePerHunt: 0,
         costPerHuntExpress: 0,
         timePerHuntExpress: 0,
         expressFactor: 0
@@ -40,6 +42,7 @@ function CommonGamePage(props: CommonGamePageProps) {
         <ScavHuntNavBar/>
         <CommonGamePageMainSection huntCost={props.huntCost}
             huntTime={props.huntTime}
+            rawHuntTime={props.rawHuntTime}
             expressCost={props.expressCost}
             expressTime={props.expressTime}
             expressFactor={props.expressFactor}
