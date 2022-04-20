@@ -34,7 +34,7 @@ const Container = styled.div`
     flex-direction: row
     color: white;
     justify-self: end;
-    gap: 5px;
+    gap:45px;
 `;
 const CustomImage = styled.img`
   width: 100%;
