@@ -104,6 +104,9 @@ const StakeLink = styled.a`
   @media (max-width: 768px) {
     font-size: 2vh;
     line-height: 2vh;
+    min-height: 25px;
+    padding-top: 0.65rem;
+}
   }
 `;
 export { NFTSInWalletWidget };

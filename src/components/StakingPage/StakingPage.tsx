@@ -90,7 +90,6 @@ const HeaderText = styled.div`
 `;
 
 const ConnectMetaMaskLink = styled.button`
-  margin-top: 10px;
   border-radius: 20px;
   background-color: transparent;
   display: inline-block;
@@ -107,9 +106,7 @@ const ConnectMetaMaskLink = styled.button`
   font-family: "Montserrat";
   text-align: center;
   box-sizing: border-box;
-  margin: 0 auto;
-  margin-top: 4vh;
-  margin-bottom: 4vh;
+  margin: 6vh auto;
   padding: 1.2rem 2.5rem;
   border-radius: 16px 0px;
   border-width: 2px;

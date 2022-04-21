@@ -66,7 +66,7 @@ const Container = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   margin-top: 4vh;
-  margin-bottom: 4vh;
+  margin-bottom: 8vh;
   @media (max-width: 768px) {
     padding-left: 3px;
     padding-right: 3px;
@@ -75,6 +75,10 @@ const Container = styled.div`
   border-radius: 2rem;
   padding: 1rem 0.4em;
   box-shadow: 0px 0px 6px 6px red;
+
+  @media (max-width: 768px) {
+   width:60%;
+  }
 `;
 
 const ChildrenContainer = styled.div`
